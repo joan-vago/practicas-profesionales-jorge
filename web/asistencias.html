@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/api/app/public/style.css" type="text/css">
+  <title>VADUM</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #111111">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand text-white" href="index.html">VADUM</a>
+
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon "></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
+
+          <li class="nav-item">
+
+            <a class="nav-link active text-white" aria-current="page" href="index.html" id="nombre_del_usuarios">
+              jorge
+            </a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="rol-de-servicio.html">Rol de servicio</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="asistencias.html">asistencias</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="vacaciones.html">vacaciones</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="usuarios.html">usuarios</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="informacion-de-personal.html">Informacion del personal</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="login.html">Cerrar sesion</a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+  <!-- <input type="time" step="1800"> -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+
+        <span class="fw-bold text-success">Entrada</span>
+        <table id="t_asistencias_entrada" class="table text-success">
+          <thead>
+            <th># Empleado</th>
+            <th>Nombre</th>
+            <th>Hora de entrada</th>
+            <th>Punto</th>
+          </thead>
+          <tbody id="t_body_entrada">
+
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col">
+
+        <span class="fw-bold text-warning">Salida</span>
+        <table id="t_asistencias_salida" class="table text-warning">
+          <thead>
+            <th># Empleado</th>
+            <th>Nombre</th>
+            <th>Hora de salida</th>
+          </thead>
+          <tbody id="t_body_salida">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <input type="time" id="hora_s" onblur="this.setAttribute('readonly','')" onchange="this.setAttribute('disabled','')"
+    value="" />
+  <script src="js/asistencias.js"></script>
+</body>
+
+</html>

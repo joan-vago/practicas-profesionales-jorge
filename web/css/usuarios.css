@@ -1,0 +1,29 @@
+:root{
+  --green : #258d19;
+  --lightgreen : #71c55b;
+}
+
+.eliminar_btn{
+  width: 15px;
+  height: 15px;
+  color: aliceblue;
+}
+
+.eliminar_btn:hover{
+  cursor: pointer;
+}
+
+.btn_green{
+  background-color: var(--lightgreen);
+}
+
+.btn_green:hover{
+  background-color: var(--green);
+}
+
+.logo{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+

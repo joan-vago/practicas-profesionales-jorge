@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VADUM PRUEBA</title>
+  <link rel="icon" href="assets/logo.ico">
+  <link rel="stylesheet" href="css/login.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="/api/app/public/style.css" type="text/css">
+</head>
+
+<body>
+  <div class="contenedor">
+    <div class="logo">
+      <img src="assets/logo.png" alt="">
+    </div>
+    <div class="titulo">
+      <h2>INICIO DE SESION</h2>
+    </div>
+    <div class="form">
+      <form action="" id="form-inicio-sesion">
+        <div class="inputbox grupo_usuario">
+          <input type="text" id="usuario" name="usuario" class="border border-3" required>
+          <span>Usuario</span>
+        </div>
+        <div class="inputbox grupo_password">
+          <input type="text" id="password" name="password" class="border border-3" required>
+          <span>Contraseña</span>
+        </div>
+        <div class="inputbox">
+          <input type="submit" value="Entrar">
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--Enlazando el javascript de bootstrap-->
+  <script src="/api/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/api/app/public/style.css" type="text/css">
+  <title>VADUM</title>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #111111">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand text-white" href="index.html">VADUM</a>
+
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon "></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
+
+          <li class="nav-item">
+
+            <a class="nav-link active text-white" aria-current="page" href="index.html" id="nombre_del_usuarios">
+              jorge
+            </a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="rol-de-servicio.html">Rol de servicio</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="asistencias.html">asistencias</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="vacaciones.html">vacaciones</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="usuarios.html">usuarios</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="informacion-de-personal.html">Informacion del personal</a>
+
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white" href="login.html">Cerrar sesion</a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+  <!-- <div class="float-start" style="position: absolute;">Float start on all viewport sizes</div> -->
+  <div class="container mt-7">
+
+    <div class="row">
+
+      <div class="col mb-2 mt-3 d-none" id="tabla_mostrar">
+        <a id="activar_edicion" href="#" class="text-decoration-none fw-bold">Regresar a Edicion</a>
+        <div class="form-floating mb-3 mt-3" style="width: 30vw">
+          <input type="text" class="form-control" id="buscador" placeholder="Buscar">
+          <label for="buscador" class="ms-3">Buscar</label>
+        </div>
+        <table id="table_rol_mostrar" class="table table-sm table-bordered table-responsive text-center mt-3">
+
+          <thead>
+
+            <tr class="text-white" style="background-color: #3c3c3c;">
+              <th># Empleado</th>
+              <th>Puesto</th>
+              <th>Nombre</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+            </tr>
+
+          </thead>
+          <tbody id="body_rol_mostrar">
+
+          </tbody>
+        </table>
+
+        <datalist id="datalistOptions">
+
+          <option value="7-19">
+          <option value="19-7">
+          <option value="8-20">
+          <option value="20-8">
+          <option value="Descanso">
+          <option value="Vacaciones">
+
+        </datalist>
+        <datalist id="datalistPuntos">
+
+          <option value="7-19">
+          <option value="19-7">
+          <option value="8-20">
+          <option value="20-8">
+          <option value="Descanso">
+          <option value="Vacaciones">
+
+        </datalist>
+
+      </div>
+
+
+      <div class="col mb-2 mt-3" id="tabla_editar">
+
+        <div class="row">
+          <a id="terminar_edicion" href="#" class="link-info text-decoration-none fw-bold">Descargar Rol</a>
+        </div>
+
+        <a id="btn_formato_1" href="#" class="link-success text-decoration-none fw-bold">Formato 1</a>
+        <span>/</span>
+        <a id="btn_formato_2" href="#" class="link-info text-decoration-none fw-bold">Formato 2</a>
+        <span>/</span>
+        <a id="btn_formato_3" href="#" class="link-info text-decoration-none fw-bold">Formato 3</a>
+
+        <div class="form-floating mb-3 mt-3">
+          <input type="text" class="form-control form-control-sm" id="buscador" placeholder="Buscar">
+          <label for="buscador" class="ms-3">Buscar</label>
+        </div>
+        <div class="row">
+          <div class="col"><input type="week" class="form-control" id="semana"></div>
+          <div class="col"><button class="btn btn-info" value="formato_1" onclick="activar()" id="btn_activar">Activar
+              Formato</button></div>
+
+
+        </div>
+
+        <!-- formato 1 -->
+        <table id="formato_1" class="table table-sm table-bordered table-responsive text-center mt-3">
+
+          <thead>
+
+            <tr class="text-white" style="background-color: #3c3c3c;">
+              <th>punto</th>
+              <th># Empleado</th>
+              <th>Puesto</th>
+              <th>Nombre</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+            </tr>
+
+          </thead>
+          <tbody id="body_rol_1">
+
+          </tbody>
+        </table>
+        <!-- formato 2 -->
+        <table id="formato_2" class="table table-sm table-bordered table-responsive text-center mt-3 d-none">
+
+          <thead>
+
+            <tr class="text-white" style="background-color: #3c3c3c;">
+              <th>punto</th>
+              <th># Empleado</th>
+              <th>Puesto</th>
+              <th>Nombre</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+            </tr>
+
+          </thead>
+          <tbody id="body_rol_2">
+
+          </tbody>
+        </table>
+        <!-- formato_3 -->
+        <table id="formato_3" class="table table-sm table-bordered table-responsive text-center mt-3 d-none">
+
+          <thead>
+
+            <tr class="text-white" style="background-color: #3c3c3c;">
+              <th>punto</th>
+              <th># Empleado</th>
+              <th>Puesto</th>
+              <th>Nombre</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+            </tr>
+
+          </thead>
+          <tbody id="body_rol_3">
+
+          </tbody>
+        </table>
+
+        <datalist id="datalistOptions">
+
+          <option value="7-19">
+          <option value="19-7">
+          <option value="permiso">
+          <option value="Incapacidad">
+          <option value="Descanso">
+          <option value="Vacaciones">
+
+        </datalist>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!--Enlazando el javascript de bootstrap-->
+  <script src="/api/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./js/rolDeServicio.js"></script>
+
+</body>
+
+</html>
