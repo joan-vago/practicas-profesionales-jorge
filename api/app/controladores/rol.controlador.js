@@ -101,7 +101,7 @@ const updateEstados = (req,res) =>{
             mensaje: 'ocurrio un error en segunda consulta'
           })
         }else{
-          conexion.conexion.query(`create table asistencias_${semana} select punto, numero_empleado, puesto from ${formato};`,(error3,result3)=>{
+          conexion.conexion.query(`create table asistencias_${semana} select punto, numero_empleado, puesto from ${formato}`,(error3,result3)=>{
             if(error3){
               console.log(error3)
               res.send({

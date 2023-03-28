@@ -9,7 +9,7 @@ router.get(`/${path}/:id`, getItem)
 
 router.post(`/${path}`, createItem)
 
-router.put(`/${path}/:id`, updateItem)
+router.put(`/${path}`, updateItem)
 
 router.delete(`/${path}/:id`, deleteItem)
 

@@ -24,7 +24,6 @@ const diaSemana = diasSemana[diaSemanaNum];
     let json_asistencias = await fetch_asistencias.json()
 
     json_asistencias.formato.forEach(item =>{
-      console.log(item)
         if(item.punto != null){
           set.add(item.punto)//se va agregando los puntos de trabajo existentes a una variable de tipo set
         }
@@ -61,25 +60,28 @@ const diaSemana = diasSemana[diaSemanaNum];
     set.forEach(element =>{
         //se elimina los espacios en blanco y cambiarlos por un guion bajo
         let item = `entrada_${expR_(element)}`
+        let item_salida = `salida_${expR_(element)}`
         //Se agrega el punto de trabajo a ua variable
         const $punto_de_trabajo = document.getElementById(`${item}`)
-        console
-        // //tabla mostrar
-        // const $punto_de_trabajo_mostrar = document.getElementById(`${item}mostrar`)
+        const $punto_de_trabajo_s = document.getElementById(`${item_salida}`)
+     
         let tr_id = 0
         json_asistencias.formato.forEach(it =>{
           
           let id_entrada = `entrada_${expR_(it.punto)}`
+          let id_salida = `salida_${expR_(it.punto)}`
           
-          if(id_entrada== $punto_de_trabajo.id){
-              //se agrega a la tabla para editar los datos
+          if(id_entrada == $punto_de_trabajo.id){
+              //se agrega a la tabla de entrada
               const $fila_entrada = document.createElement("tr")
               $fila_entrada.setAttribute('class',`${item}`)
               $fila_entrada.setAttribute('id',`${item}_${tr_id++}`)
-                  
+              
               $fila_entrada.innerHTML +=`
               <td><span class="${$fila_entrada.id}">${it.numero_empleado}</span></td>
               <td><span class="${$fila_entrada.id}">${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno}</span></td>
+              <td><input type="time" class="form-control ${$fila_entrada.id}" value="${it.dia_entrada}" onblur="guardar()" onchange="this.setAttribute('disabled','')"></td>
+              <td><input type="text" class="form-control ${$fila_entrada.id}" value="${it.punto}" ></td>
               `
                   
               const $numero_filas = document.querySelectorAll(`.${item}`)
@@ -89,31 +91,27 @@ const diaSemana = diasSemana[diaSemanaNum];
                 let $ultima_fila = $numero_filas[$numero_filas.length-1]
                 $ultima_fila.insertAdjacentElement('afterend',$fila_entrada)
               }
-
-
-              //se agrega a la tabla para mostrar datos
-              const $fila_mostrar = document.createElement("tr")
-              $fila_mostrar.setAttribute('class',`${item}`)
-                  
-              $fila_mostrar.innerHTML +=
-                    `
-                      <td> ${it.numero_empleado}</td>
-                      <td>  ${it.puesto}</td>
-                      <td class="col-md-3">  ${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno} </td>
-                      <td>  ${it.lunes}</td>
-                      <td>  ${it.martes}</td>
-                      <td>  ${it.miercoles}  </td>
-                      <td>  ${it.jueves}</td>
-                      <td>  ${it.viernes} </td>
-                      <td>  ${it.sabado}</td>
-                      <td>  ${it.domingo} </td>
-
-                    `
-
-
           }
-          if(it.estado == 'activo'){
-            verFormato_3()
+
+          if(id_salida == $punto_de_trabajo_s.id && it.dia_entrada != null){
+              //se agrega a la tabla de entrada
+              const $fila_salida = document.createElement("tr")
+              $fila_salida.setAttribute('class',`${item_salida}`)
+              $fila_salida.setAttribute('id',`${item_salida}_${tr_id++}`)
+                  
+              $fila_salida.innerHTML +=`
+              <td><span class="${$fila_salida.id}">${it.numero_empleado}</span></td>
+              <td><span class="${$fila_salida.id}">${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno}</span></td>
+              <td><input type="time" class="form-control ${$fila_salida.id}" value="${it.dia_salida}" onblur="guardar()" onchange="this.setAttribute('disabled','')"></td>
+              `
+                  
+              const $numero_filas = document.querySelectorAll(`.${item_salida}`)
+              if($numero_filas.length ==1){
+                $punto_de_trabajo_s.insertAdjacentElement('afterend', $fila_salida)
+              }else{
+                let $ultima_fila = $numero_filas[$numero_filas.length-1]
+                $ultima_fila.insertAdjacentElement('afterend',$fila_salida)
+              }
           }
         })
     })
@@ -137,18 +135,42 @@ const diaSemana = diasSemana[diaSemanaNum];
 
     }
 
+  function guardar() {
+    event.preventDefault();
+    // this.setAttribute('readonly','')
+    let nodo_td = event.srcElement.parentNode
+    let nodo_tr = nodo_td.parentNode
+    let nodo_body = nodo_tr.parentNode
+
+    let horario = nodo_tr.id.split('_')[0]
+    console.log(horario)
+    let datos = document.querySelectorAll( `.${nodo_tr.id}`)
+    let data = {}
+    if(horario == 'entrada'){
+      data.horario = horario
+      data.numero_empleado = datos[0].textContent
+      data.dia = datos[2].value
+      data.punto = datos[3].value
+    }
+    if(horario == 'salida'){
+      data.horario = horario
+      data.numero_empleado = datos[0].textContent
+      data.dia = datos[2].value
+    }
+    let dataJSON = JSON.stringify(data)
+
+    fetch(`${urlAsistencias}`,{
+      method: 'put',
+      body: dataJSON
+    })
+    .then(x => x.json())
+    .then(res => {
+      console.log(res.mensaje)
+    })
+    
+  }
 
 
 
 
-// const $guardar_salida = document.getElementById('guardar_salida')
-// $guardar_salida.addEventListener('click',()=>{
-//   event.preventDefault()
-//   let $hora_s = document.getElementById('hora_s').value
-//   let $hora_s1 = document.getElementById('hora_s1').value
-//   console.log($hora_s)
-//   console.log($hora_s1)
-// })
-// const hora_s = document.getElementById('hora_s')
-// const hora_s1 = document.getElementById('hora_s1')
 
