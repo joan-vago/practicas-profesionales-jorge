@@ -4,8 +4,7 @@ const form_inicio_sesion = document.getElementById("form-inicio-sesion")
 form_inicio_sesion.addEventListener("submit", (event)=>{
   event.preventDefault();
   if(campos.usuario && campos.password){
-    // console.log(usuario)
-    // console.log(password)
+
     //se obtiene los valores de los input 'usuario' y 'password'
     let nombre_usuario = document.getElementById("usuario").value
     let password = document.getElementById("password").value
@@ -20,12 +19,23 @@ form_inicio_sesion.addEventListener("submit", (event)=>{
     })
     //Se resive la respuesta del servidor
     .then(x =>x.json()).then(res =>{
-      console.log(res.autenticacion)
      
       //si la autenticacion es correcta se redirecciona a la pagina principal
       if(res.autenticacion === "Acceso correcto"){
-        location.href = "index.html"
-      }
+  
+        setCookie('nombre',res.nombre,31)
+        setCookie('tipo',res.tipo,31)
+        setTimeout(()=>{
+          if(res.tipo == 'noadm'){
+            location.href = "asistencias.html"
+          }
+          else{
+             location.href = "informacion-de-personal.html"
+          }
+        
+        }, 500); 
+        
+      }    
 
 
     })
@@ -75,3 +85,19 @@ inputs_registro.forEach((input)=>{
   input.addEventListener("keyup",validacion_formulario)
   input.addEventListener("blur",validacion_formulario)
 })
+
+function setCookie(name, value, expirydays) {
+ var d = new Date();
+ d.setTime(d.getTime() + (expirydays*24*60*60*1000));
+ var expires = "expires="+ d.toUTCString();
+ document.cookie = name + "=" + value + "; " + expires;
+}
+
+function deleteAllCookies(){
+   var cookies = document.cookie.split(";");
+   for (var i = 0; i < cookies.length; i++)
+     deleteCookie(cookies[i].split("=")[0]);
+}
+function deleteCookie(name){
+  setCookie(name,"",-1);
+}

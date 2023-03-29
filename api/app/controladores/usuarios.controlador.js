@@ -1,20 +1,27 @@
 const conexion = require("../../config/database")
 const bcryptjs = require('bcryptjs');
+const session = require('express-session')
+let ssn = require('../../app')
+// const jwt = require('jsonwebtoken')
 
-const getItems = (req, res) =>{
-  conexion.conexion.query('SELECT * FROM usuarios ORDER BY tipo',(error,results)=>{
-    if(error){
-      throw error;
-    }else{
-      let usuarios = results;
-      res.send(JSON.stringify(usuarios)) 
-    }
-  })    
-}
+const getItems = (req, res) =>{ 
+  // const sessionId2 = req.cookies.connect.sid;
+  ssn = req.session
+
+    conexion.conexion.query('SELECT * FROM usuarios ORDER BY tipo',(error,results)=>{
+        if(error){
+          throw error;
+        }else{
+          // console.log(sessionId2)
+          let usuarios = results;
+          res.send(JSON.stringify(usuarios)) 
+        }
+      })    
+
+  }  
 
 const getItem =  (req, res) =>{
-  
-  console.log("me esta llegando algo a usuarios")
+
 }
 
 const createItem = async (req, res) =>{
@@ -84,18 +91,22 @@ const auth = async (req,res)=>{
         let autenticacionJSON = {autenticacion:autenticacion}
         res.send(JSON.stringify(autenticacionJSON))
       }else{
-         console.log("contraeña correcta y usuario")
-        
-        let autenticacion = "Acceso correcto"
-        let autenticacionJSON = {autenticacion:autenticacion}
-        res.send(JSON.stringify(autenticacionJSON))
-        /*
-        req.session.login = true
-        req.session.nombre = results[0].nombre
-        req.session.tipo = results[0].tipo
-        req.session.usuario = results[0].numero_empleado
-        res.redirect('/')
-        */
+        ssn = req.session
+        console.log("contraeña correcta y usuario")
+        ssn.login = true
+        ssn.nombre = results[0].nombre
+        ssn.tipo = results[0].tipo
+        ssn.usuario = results[0].numero_empleado
+        let nombre = ssn.nombre
+        let tipo = ssn.tipo
+        let sessionID = req.session.sessionID
+
+          let autenticacion = "Acceso correcto"
+          let autenticacionJSON = {session:sessionID,nombre:nombre,tipo: tipo,autenticacion:autenticacion}
+          res.setHeader('Set-Cookie', ['type=ninja', 
+  'language=javascript']);
+          res.send(JSON.stringify(autenticacionJSON))
+      
       }
     })
   }else{

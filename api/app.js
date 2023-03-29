@@ -22,6 +22,15 @@ app.use(express.json({
   type: "*/*"
 }));
 
+app.use(session({
+  secret: 'estoEsSecreto',
+  cookie: {
+    sameSite: 'strict'
+  },
+  resave: true,
+  saveUninitialized: true
+}))
+
 //rutas de usuario
 app.use(usuariosRuta)
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {getItems, getItem, createItem, updateItem, deleteItem, auth} = require('../controladores/usuarios.controlador')
+const {checkOrigin} = require('../middleware/origin')
 const path = "usuarios"
 
 router.get(`/${path}`, getItems)

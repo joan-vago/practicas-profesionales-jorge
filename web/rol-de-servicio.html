@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
 
-      <a class="navbar-brand text-white" href="index.html">VADUM</a>
+      <a class="navbar-brand text-white" href="">VADUM</a>
 
       <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,39 +32,35 @@
 
           <li class="nav-item">
 
-            <a class="nav-link active text-white" aria-current="page" href="index.html" id="nombre_del_usuarios">
-              jorge
+            <a class="nav-link active text-white" aria-current="page" href="" id="nombre_del_usuario">
+
             </a>
 
           </li>
           <li class="nav-item">
 
-            <a class="nav-link text-white" href="rol-de-servicio.html">Rol de servicio</a>
+            <a class="nav-link text-white" href="rol-de-servicio.html" id="rol-de-servicio">Rol de servicio</a>
 
           </li>
           <li class="nav-item">
 
-            <a class="nav-link text-white" href="asistencias.html">asistencias</a>
+            <a class="nav-link text-white" href="asistencias.html" id="asistencias">asistencias</a>
 
           </li>
           <li class="nav-item">
 
-            <a class="nav-link text-white" href="vacaciones.html">vacaciones</a>
+            <a class="nav-link text-white" href="usuarios.html" id="usuarios">usuarios</a>
 
           </li>
           <li class="nav-item">
 
-            <a class="nav-link text-white" href="usuarios.html">usuarios</a>
+            <a class="nav-link text-white" href="informacion-de-personal.html" id="informacion-de-personal">Informacion
+              del personal</a>
 
           </li>
           <li class="nav-item">
 
-            <a class="nav-link text-white" href="informacion-de-personal.html">Informacion del personal</a>
-
-          </li>
-          <li class="nav-item">
-
-            <a class="nav-link text-white" href="login.html">Cerrar sesion</a>
+            <a class="nav-link text-white" href="login.html" id="logout">Cerrar sesion</a>
 
           </li>
 
@@ -80,75 +76,14 @@
 
     <div class="row">
 
-      <div class="col mb-2 mt-3 d-none" id="tabla_mostrar">
-        <a id="activar_edicion" href="#" class="text-decoration-none fw-bold">Regresar a Edicion</a>
-        <div class="form-floating mb-3 mt-3" style="width: 30vw">
-          <input type="text" class="form-control" id="buscador" placeholder="Buscar">
-          <label for="buscador" class="ms-3">Buscar</label>
-        </div>
-        <table id="table_rol_mostrar" class="table table-sm table-bordered table-responsive text-center mt-3">
-
-          <thead>
-
-            <tr class="text-white" style="background-color: #3c3c3c;">
-              <th># Empleado</th>
-              <th>Puesto</th>
-              <th>Nombre</th>
-              <th>Lunes</th>
-              <th>Martes</th>
-              <th>Miercoles</th>
-              <th>Jueves</th>
-              <th>Viernes</th>
-              <th>Sabado</th>
-              <th>Domingo</th>
-            </tr>
-
-          </thead>
-          <tbody id="body_rol_mostrar">
-
-          </tbody>
-        </table>
-
-        <datalist id="datalistOptions">
-
-          <option value="7-19">
-          <option value="19-7">
-          <option value="8-20">
-          <option value="20-8">
-          <option value="Descanso">
-          <option value="Vacaciones">
-
-        </datalist>
-        <datalist id="datalistPuntos">
-
-          <option value="7-19">
-          <option value="19-7">
-          <option value="8-20">
-          <option value="20-8">
-          <option value="Descanso">
-          <option value="Vacaciones">
-
-        </datalist>
-
-      </div>
-
 
       <div class="col mb-2 mt-3" id="tabla_editar">
-
-        <div class="row">
-          <a id="terminar_edicion" href="#" class="link-info text-decoration-none fw-bold">Descargar Rol</a>
-        </div>
 
         <a id="btn_formato_1" href="#" class="link-success text-decoration-none fw-bold">Formato 1</a>
         <span>/</span>
         <a id="btn_formato_2" href="#" class="link-info text-decoration-none fw-bold">Formato 2</a>
         <span>/</span>
         <a id="btn_formato_3" href="#" class="link-info text-decoration-none fw-bold">Formato 3</a>
-
-        <div class="form-floating mb-3 mt-3">
-          <input type="text" class="form-control form-control-sm" id="buscador" placeholder="Buscar">
-          <label for="buscador" class="ms-3">Buscar</label>
-        </div>
         <div class="row">
           <div class="col"><input type="week" class="form-control" id="semana"></div>
           <div class="col"><button class="btn btn-info" value="formato_1" onclick="activar()" id="btn_activar">Activar
@@ -251,6 +186,7 @@
   <!--Enlazando el javascript de bootstrap-->
   <script src="/api/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./js/rolDeServicio.js"></script>
+  <script src="js/auth.js"></script>
 
 </body>
 

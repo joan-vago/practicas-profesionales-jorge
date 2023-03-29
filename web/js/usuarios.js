@@ -1,4 +1,4 @@
-
+let numEmpleadoGet
 //se hace un fetch para mostrar los usuarios registrados
 const listaUsuarios = fetch("http://localhost:3000/usuarios").then(x =>x.json()).then(res =>{
 //se recorre la lista de usuarios registrados
@@ -26,7 +26,7 @@ const listaUsuarios = fetch("http://localhost:3000/usuarios").then(x =>x.json())
                       <td>
                         
 
-                        <button type="button" value="${usuarios.numero_empleado}" onClick="editar(${usuarios.numero_empleado})" class="btn btn_green" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button type="button" value="${usuarios.numero_empleado}" onClick="editar(${usuarios.numero_empleado})" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 
                           Editar
 
@@ -67,6 +67,7 @@ function editar(value) {
       //se selecciona el valor de cada uno de los campos.
       let nombre = document.getElementById("editar_nombre")
       let numEmpleado = document.getElementById("editar_numEmpleado")
+      let permiso = document.getElementById('editar_permiso')
       let password = document.getElementById("editar_password")
       
  
@@ -75,8 +76,10 @@ function editar(value) {
 
         if(value == usuarios.numero_empleado){
 
-          nombre.value = usuarios.nombre ;
-          numEmpleado.value = usuarios.numero_empleado;
+          nombre.value = usuarios.nombre 
+          numEmpleado.value = usuarios.numero_empleado
+          permiso.value = usuarios.tipo
+          numEmpleadoGet = usuarios.numero_empleado
         }
 
       } )
@@ -112,7 +115,8 @@ if(campos.nombre && campos.numEmpleado && campos.password){
   location.reload()
 
 }else{
-  console.log('campos invalidos')
+  alert('datos invalidos: ingrese los datos correctamente')
+  location.reload()
 }
   
 })
@@ -147,6 +151,7 @@ const expresiones = {
 	password: /^.{8,12}$/, // 8 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
+
 //objeto para guardr si un camo se valido correctamente
 const campos = {
   numEmpleado: false,
@@ -156,6 +161,7 @@ const campos = {
   editar_nombre: false,
   editar_password: false
 }
+
 //validacion de formularios de registro y editar
 const validacion_formulario = (e)=>{
  //validar nombre formulario registro
@@ -183,6 +189,7 @@ const validacion_formulario = (e)=>{
     validarCampos(expresiones.password, e.target, e.target.name)
   }
 }
+
 //funcion para validar los inputs
 function validarCampos(expresion, input, campo) {
   
@@ -198,33 +205,18 @@ function validarCampos(expresion, input, campo) {
     campos[campo] = false
   }
 }
+
 //evento para validar formulario de registro
 const inputs_registro = document.querySelectorAll('#form_registro input')
 inputs_registro.forEach((input)=>{
   input.addEventListener("keyup",validacion_formulario)
   input.addEventListener("blur",validacion_formulario)
 })
+
 //evento para validar formulario editar
 const inputs_editar = document.querySelectorAll('#form_editar input')
 inputs_editar.forEach((input)=>{
   input.addEventListener("keyup",validacion_formulario)
   input.addEventListener("blur",validacion_formulario)
 })
-//evento para mostrar campo de editar contraseña
-function mostrarEditarPassword() {
-  event.preventDefault()
-  document.querySelector('.mostrar_editar_password').classList.add('d-none')
-  document.querySelector('.grupo_editar_password').classList.remove('d-none')
-}
-//funcion para esconder el campo de editar contraseña
-const quitarEditarPassword = ()=>{
-  console.log('dentro de la funcion q')
-  document.querySelector('.mostrar_editar_password').classList.remove('d-none')
-  document.querySelector('.grupo_editar_password').classList.add('d-none')
-}
-
-const cancelar_editar = document.querySelector('.cancelar')
-const close_editar = document.querySelector('.close')
-cancelar_editar.addEventListener('click',quitarEditarPassword)
-close_editar.addEventListener('click',quitarEditarPassword)
 

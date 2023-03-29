@@ -21,7 +21,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
       let json = await fetchGet.json()
       let fecthestado = await fetch(`${URL}/estado`)
       let json_estado = await fecthestado.json()
-      console.log(json.formato_3)
       //se agregan elementos a la tabla formato 1
       //Se agregan los datos de los puntos de trabajo a una variable de tipo Set
       json.formato_1.forEach(element => {
@@ -45,16 +44,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                 <td colspan="8" class="border-0"></td>
               </tr>
           `
-        body_rol_mostrar.innerHTML += 
-          `
-              <tr id="${id}mostrar" class="${id}mostrar">
-                <td colspan="2" class="border-0">
-                  ${punto}
-                </td>
-
-                <td colspan="7" class="border-0"></td>
-              </tr>
-          `
       })
 
       //se agregan as filas corespondientes a cada uno de los puntos de trabajo
@@ -63,8 +52,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
         let item = `formato_1_${expR_(element)}`
         //Se agrega el punto de trabajo a una variable
         const $punto_de_trabajo = document.getElementById(`${item}`)
-        //tabla mostrar
-        const $punto_de_trabajo_mostrar = document.getElementById(`${item}mostrar`)
         
         let tr_id = 0
         json.formato_1.forEach(it =>{
@@ -79,7 +66,7 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                   
               $fila.innerHTML +=
                     `
-                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.punto}" onblur="editar()"></td>
+                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" id="punto_${$fila.id}" value="${it.punto}" onblur="editar()"></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.numero_empleado}" required disabled></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.puesto}" onblur="editar()"> </td>
                       <td class="col-md-3">  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno}" required disabled> </td>
@@ -168,32 +155,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
               }else{
                 let $ultima_fila = $numero_filas[$numero_filas.length-1]
                 $ultima_fila.insertAdjacentElement('afterend',$fila)
-              }
-
-              //se agrega a la tabla para mostrar datos
-              const $fila_mostrar = document.createElement("tr")
-              $fila_mostrar.setAttribute('class',`${item}`)
-                  
-              $fila_mostrar.innerHTML +=
-                    `
-                      <td> ${it.numero_empleado}</td>
-                      <td>  ${it.puesto}</td>
-                      <td class="col-md-3">  ${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno} </td>
-                      <td>  ${it.lunes}</td>
-                      <td>  ${it.martes}</td>
-                      <td>  ${it.miercoles}  </td>
-                      <td>  ${it.jueves}</td>
-                      <td>  ${it.viernes} </td>
-                      <td>  ${it.sabado}</td>
-                      <td>  ${it.domingo} </td>
-
-                    `
-              const $numero_filas_mostrar = document.querySelectorAll(`.${item}mostrar`)
-              if($numero_filas_mostrar.length ==1){
-                $punto_de_trabajo_mostrar.insertAdjacentElement('afterend', $fila_mostrar)
-              }else{
-                let $ultima_fila = $numero_filas_mostrar[$numero_filas_mostrar.length-1]
-                $ultima_fila.insertAdjacentElement('afterend',$fila_mostrar)
               }
 
           }
@@ -227,16 +188,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                 <td colspan="8" class="border-0"></td>
               </tr>
           `
-        body_rol_mostrar.innerHTML += 
-          `
-              <tr id="${id}mostrar" class="${id}mostrar">
-                <td colspan="2" class="border-0">
-                  ${punto}
-                </td>
-
-                <td colspan="7" class="border-0"></td>
-              </tr>
-          `
       })
       //se agregan as filas corespondientes a cada uno de los puntos de trabajo
       set2.forEach(element => {
@@ -244,8 +195,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
         let item = `formato_2_${expR_(element)}`
         //Se agrega el punto de trabajo a ua variable
         const $punto_de_trabajo = document.getElementById(`${item}`)
-        //tabla mostrar
-        const $punto_de_trabajo_mostrar = document.getElementById(`${item}mostrar`)
         
         let tr_id = 0
         json.formato_2.forEach(it =>{
@@ -260,7 +209,7 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                   
               $fila.innerHTML +=
                     `
-                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.punto}" onblur="editar()"></td>
+                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" id="punto_${$fila.id}" value="${it.punto}" onblur="editar()"></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.numero_empleado}" required disabled></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.puesto}" onblur="editar()"> </td>
                       <td class="col-md-3">  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno}" required disabled> </td>
@@ -349,33 +298,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
               }else{
                 let $ultima_fila = $numero_filas[$numero_filas.length-1]
                 $ultima_fila.insertAdjacentElement('afterend',$fila)
-              }
-
-
-              //se agrega a la tabla para mostrar datos
-              const $fila_mostrar = document.createElement("tr")
-              $fila_mostrar.setAttribute('class',`${item}`)
-                  
-              $fila_mostrar.innerHTML +=
-                    `
-                      <td> ${it.numero_empleado}</td>
-                      <td>  ${it.puesto}</td>
-                      <td class="col-md-3">  ${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno} </td>
-                      <td>  ${it.lunes}</td>
-                      <td>  ${it.martes}</td>
-                      <td>  ${it.miercoles}  </td>
-                      <td>  ${it.jueves}</td>
-                      <td>  ${it.viernes} </td>
-                      <td>  ${it.sabado}</td>
-                      <td>  ${it.domingo} </td>
-
-                    `
-              const $numero_filas_mostrar = document.querySelectorAll(`.${item}mostrar`)
-              if($numero_filas_mostrar.length ==1){
-                $punto_de_trabajo_mostrar.insertAdjacentElement('afterend', $fila_mostrar)
-              }else{
-                let $ultima_fila = $numero_filas_mostrar[$numero_filas_mostrar.length-1]
-                $ultima_fila.insertAdjacentElement('afterend',$fila_mostrar)
               }
 
           }
@@ -409,16 +331,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                 <td colspan="8" class="border-0"></td>
               </tr>
           `
-        body_rol_mostrar.innerHTML += 
-          `
-              <tr id="${id}mostrar" class="${id}mostrar">
-                <td colspan="2" class="border-0">
-                  ${punto}
-                </td>
-
-                <td colspan="7" class="border-0"></td>
-              </tr>
-          `
       })
       //se agregan as filas corespondientes a cada uno de los puntos de trabajo
       set3.forEach(element => {
@@ -442,7 +354,7 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                   
               $fila.innerHTML +=
                     `
-                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.punto}" onblur="editar()"></td>
+                      <td><input type="text" class="form-control form-control-sm ${$fila.id}" id="punto_${$fila.id}" value="${it.punto}" onblur="editar()"></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.numero_empleado}" required disabled></td>
                       <td>  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.puesto}" onblur="editar()"> </td>
                       <td class="col-md-3">  <input type="text" class="form-control form-control-sm ${$fila.id}" value="${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno}" required disabled> </td>
@@ -534,33 +446,6 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
                 $ultima_fila.insertAdjacentElement('afterend',$fila)
               }
 
-
-              //se agrega a la tabla para mostrar datos
-              const $fila_mostrar = document.createElement("tr")
-              $fila_mostrar.setAttribute('class',`${item}`)
-                  
-              $fila_mostrar.innerHTML +=
-                    `
-                      <td> ${it.numero_empleado}</td>
-                      <td>  ${it.puesto}</td>
-                      <td class="col-md-3">  ${it.nombres +" "+ it.apellido_paterno + " "+ it.apellido_materno} </td>
-                      <td>  ${it.lunes}</td>
-                      <td>  ${it.martes}</td>
-                      <td>  ${it.miercoles}  </td>
-                      <td>  ${it.jueves}</td>
-                      <td>  ${it.viernes} </td>
-                      <td>  ${it.sabado}</td>
-                      <td>  ${it.domingo} </td>
-
-                    `
-              const $numero_filas_mostrar = document.querySelectorAll(`.${item}mostrar`)
-              if($numero_filas_mostrar.length ==1){
-                $punto_de_trabajo_mostrar.insertAdjacentElement('afterend', $fila_mostrar)
-              }else{
-                let $ultima_fila = $numero_filas_mostrar[$numero_filas_mostrar.length-1]
-                $ultima_fila.insertAdjacentElement('afterend',$fila_mostrar)
-              }
-
           }
           if(it.estado == 'activo'){
             verFormato_3()
@@ -587,8 +472,16 @@ const URL = "http://localhost:3000/rol";//url al que se llama con el metodo fetc
     } catch (error) {
       throw error
     }finally{
-      
 
+      const fechaActual = new Date();
+      const num_semana = fechaActual.getWeek();
+      const anio = fechaActual.getFullYear()
+      let semana = `${anio}-W${num_semana +1}`
+      // const fechaInicioProximaSemana = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), fechaActual.getDate() + (7 - fechaActual.getDay()));
+      const semanaInput = document.getElementById("semana");
+      // // semanaInput.min = fechaInicioProximaSemana.toISOString().slice(0, 10);
+      // console.log(fechaInicioProximaSemana.toISOString().slice(0, 10))
+      semanaInput.setAttribute('min',`${semana}`)
     }
   
   }
@@ -670,13 +563,12 @@ $btn_formato_3.addEventListener('click',verFormato_3)
 
   //se guardan los datos nuevos
   function editar() {
-
+    let id_event = event.srcElement.id
+    let punto = id_event.split('_')[0]
     let value = event.srcElement.parentNode
     let $fila = value.parentNode
     let $body = $fila.parentNode
     let formato = $body.parentNode
-    // let formato = event.srcElement.value
-    console.log(formato)
     let elementos = document.querySelectorAll(`.${$fila.id}`)
     let elemento = {}
      if(elementos.length >1){
@@ -703,53 +595,45 @@ $btn_formato_3.addEventListener('click',verFormato_3)
           .then(res => {
             console.log(res.mensaje)
             if(res.mensaje == "datos guardados correctamente"){
-              location.reload()
+              if(punto == 'punto'){
+                location.reload()
+              }else{
+                console.log(res.mensaje)
+              }
             }
           })
   }
-
-//funcon para activar la edicion de la tabla del rol de servicio
-const activarEdicion = ()=>{
-  event.preventDefault()
-  let $tabla_editar = document.getElementById('tabla_editar')
-  let $tabla_mostrar= document.getElementById('tabla_mostrar')
-
-  $tabla_mostrar.classList.add('d-none')
-  $tabla_editar.classList.remove('d-none')
-}
-
-const $activar_edicion = document.getElementById('activar_edicion')
-$activar_edicion.addEventListener('click',activarEdicion)
-
-//funcon para activar la edicion de la tabla del rol de servicio
-const terminarEdicion = ()=>{
-  event.preventDefault()
-  let $tabla_editar = document.getElementById('tabla_editar')
-  let $tabla_mostrar= document.getElementById('tabla_mostrar')
-
-  $tabla_mostrar.classList.remove('d-none')
-  $tabla_editar.classList.add('d-none')
-}
-const $terminar_edicion = document.getElementById('terminar_edicion')
-$terminar_edicion.addEventListener('click',terminarEdicion)
 
 //activar rol de servicio
 function activar() {
   event.preventDefault();
       let semana = document.getElementById('semana').value
-      console.log(semana)
-  let formato = {
-    semana: semana,
-    formato: event.srcElement.value
-  }
-  let formatoJSON = JSON.stringify(formato)
+      
+      if(semana){
+        let formato = {
+          semana: semana,
+          formato: event.srcElement.value
+        }
+        let formatoJSON = JSON.stringify(formato)
 
-  fetch(`${URL}`,{
-    method: 'put',
-    body: formatoJSON
-  })
-  .then(f => f.json())
-  .then(fres =>{
-    console.log(fres.mensaje)
-  })
+        fetch(`${URL}`,{
+          method: 'put',
+          body: formatoJSON
+        })
+        .then(f => f.json())
+        .then(fres =>{
+          console.log(fres.mensaje)
+        })
+      }else{
+        alert('ingrese la semana que abarcara el rol de servicio')
+      }
+
 }
+
+Date.prototype.getWeek = function() {
+  const date = new Date(this.getTime());
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  const firstWeek = new Date(date.getFullYear(), 0, 4);
+  return 1 + Math.round(((date.getTime() - firstWeek.getTime()) / 86400000 - 3 + (firstWeek.getDay() + 6) % 7) / 7);
+};
